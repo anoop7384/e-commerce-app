@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/components/text_widgets.dart';
-import 'package:flutter_shopping_app/src/screens/payment/components/wallet_options_list.dart';
+import 'package:eshop/src/components/text_widgets.dart';
+import 'package:eshop/src/screens/payment/components/wallet_options_list.dart';
 
 AppBar buildCheckoutAppBar(BuildContext context,double totalPrice) {
   return AppBar(

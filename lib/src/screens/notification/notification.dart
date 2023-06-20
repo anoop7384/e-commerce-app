@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/components/text_widgets.dart';
+import 'package:eshop/src/components/text_widgets.dart';
 
 class NotificationScreen extends StatefulWidget {
   @override

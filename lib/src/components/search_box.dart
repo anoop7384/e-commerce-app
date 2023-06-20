@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/home/components/camera_app.dart';
+import 'package:eshop/src/screens/home/components/camera_app.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/details/details_screen.dart';
+import 'package:eshop/src/screens/details/details_screen.dart';
 
 GridView buildProductGridView(BuildContext context, List<dynamic> products) {
   var orientation = MediaQuery.of(context).orientation;

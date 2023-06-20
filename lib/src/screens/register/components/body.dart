@@ -3,10 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/constants.dart';
-import 'package:flutter_shopping_app/src/screens/Register/components/textfield_decoration.dart';
-import 'package:flutter_shopping_app/src/screens/login/login_screen.dart';
-import 'package:flutter_shopping_app/src/screens/register/components/widgets.dart';
+import 'package:eshop/constants.dart';
+import 'package:eshop/src/screens/Register/components/textfield_decoration.dart';
+import 'package:eshop/src/screens/login/login_screen.dart';
+import 'package:eshop/src/screens/register/components/widgets.dart';
+
+import '../../../../database.dart';
+import '../../../models/userProfile.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({Key? key}) : super(key: key);
@@ -31,7 +34,7 @@ class _RegisterBodyState extends State<RegisterBody> {
       shrinkWrap: true,
       padding: const EdgeInsets.all(40.0),
       children: [
-        buildHeroThumbnail(profileThumb),
+        buildHeroThumbnail(AssetImage('assets/images/cart.png')),
         SizedBox(height: 20),
         buildTextRegisterNow(),
         SizedBox(height: 20),
@@ -88,7 +91,7 @@ class _RegisterBodyState extends State<RegisterBody> {
           keyboardType: TextInputType.visiblePassword,
           cursorColor: Colors.deepPurple,
           decoration:
-          fieldDecoration(Icon(CupertinoIcons.lock_fill), 'Password'),
+              fieldDecoration(Icon(CupertinoIcons.lock_fill), 'Password'),
         ),
         SizedBox(height: 40),
         // buildRowForgotPassword()
@@ -116,14 +119,16 @@ class _RegisterBodyState extends State<RegisterBody> {
               try {
                 final credential = await FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
-                    email: email, password: password);
+                        email: email, password: password);
                 final user = FirebaseAuth.instance.currentUser;
-                await FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
-                  'name': fullname,
-                  'email': email,
-                  'phonenumber' : phonenumber,
-                  // Add more user-related fields as needed
-                });
+                UserProfile userProfile = UserProfile(
+                  username: fullname,
+                  email: email,
+                  address: '',
+                  phoneNumber: phonenumber,
+                  dateOfBirth: DateTime(1999, 1, 1),
+                );
+                createUser(userProfile, user!.uid.toString());
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -162,5 +167,3 @@ class _RegisterBodyState extends State<RegisterBody> {
     );
   }
 }
-
-

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/constants.dart';
+import 'package:eshop/constants.dart';
 
 class Categories extends StatefulWidget {
   Categories({Key? key, this.categories,this.selectedIndex}) : super(key: key);

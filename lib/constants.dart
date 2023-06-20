@@ -11,7 +11,7 @@ const sDefaultColorPadding = 15.0;
 
 const kTextColor = Color(0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
-const profileThumb = "https://image.flaticon.com/icons/png/512/891/891399.png";
+// const profileThumb = "https://image.flaticon.com/icons/png/512/891/891399.png";
 
 // our default Shadow
 const sDefaultShadow = BoxShadow(

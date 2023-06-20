@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_shopping_app/src/models/products.dart';
+import 'package:eshop/src/models/products.dart';
 
 import 'widgets.dart';
 
@@ -78,41 +78,6 @@ class _DetailBodyState extends State<DetailBody> {
         SizedBox(width: 10),
         buildCircleColorAvatar(Colors.indigo.shade300),
         Spacer(),
-        // Container(
-        //   height: 40,
-        //   width: 100,
-        //   decoration: BoxDecoration(
-        //       color: Colors.indigo.shade100,
-        //       shape: BoxShape.rectangle,
-        //       borderRadius: BorderRadius.all(Radius.circular(8))),
-        //   child: Padding(
-        //     padding: const EdgeInsets.all(8.0),
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       children: [
-        //         InkWell(
-        //             onTap: () {
-        //               print(_itemCount);
-        //               setState(() {
-        //                 _itemCount = (_itemCount + 1);
-        //               });
-        //             },
-        //             child: Icon(CupertinoIcons.plus_circle)),
-        //         Text('$_itemCount'),
-        //         InkWell(
-        //             onTap: () {
-        //               print(_itemCount);
-        //               setState(() {
-        //                 if (_itemCount != 1) {
-        //                   _itemCount = (_itemCount - 1);
-        //                 }
-        //               });
-        //             },
-        //             child: Icon(CupertinoIcons.minus_circle))
-        //       ],
-        //     ),
-        //   ),
-        // )
       ],
     );
   }

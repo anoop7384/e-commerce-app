@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/home/home_screen.dart';
+import 'package:eshop/src/screens/home/home_screen.dart';
 
 class ReceiptPage extends StatefulWidget {
   @override

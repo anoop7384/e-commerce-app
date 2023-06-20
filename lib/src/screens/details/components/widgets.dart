@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eshop/database.dart';
+import 'package:eshop/src/models/cartItems.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/constants.dart';
-import 'package:flutter_shopping_app/src/models/products.dart';
-import 'package:flutter_shopping_app/src/screens/cart/cart_screen.dart';
-import 'package:flutter_shopping_app/src/screens/payment/payment_screen.dart';
+import 'package:eshop/constants.dart';
+import 'package:eshop/src/models/products.dart';
+import 'package:eshop/src/screens/cart/cart_screen.dart';
+import 'package:eshop/src/screens/payment/summary/order_summary_screen.dart';
 
 Container imageContainer(double imageHeight, Product product) {
   return Container(
@@ -68,31 +70,35 @@ Row buildRowBtnPrice(context, Product product) {
       Spacer(),
       ElevatedButton(
           onPressed: () async {
-            try {
-              final user = FirebaseAuth.instance.currentUser;
-              final cartRef = FirebaseFirestore.instance.collection('users').doc(user!.uid).collection('cart');
-
-              await cartRef.doc(product.id.toString()).set(product.toJson());
-
-              print('Product added to cart successfully!');
-            } catch (error) {
-              print('Failed to add product to cart: $error');
-            }
+            await addToCart(
+                FirebaseAuth.instance.currentUser!.uid.toString(), product);
           },
           style: ElevatedButton.styleFrom(
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
             ),
           ),
           child: Text('ADD TO CART', style: TextStyle(fontSize: 20))),
       ElevatedButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PaymentGateway(totalPrice: product.price)));
+            CartItem toCart = CartItem(
+              id: product.id,
+              title: product.title,
+              description: product.description,
+              category: product.category,
+              image: product.image,
+              quantity: 1,
+              price: product.price,
+            );
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OrderSummary(
+                        products: [toCart], totalPrice: product.price)));
           },
           style: ElevatedButton.styleFrom(
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
             ),
           ),
           child: Text('BUY NOW', style: TextStyle(fontSize: 20))),

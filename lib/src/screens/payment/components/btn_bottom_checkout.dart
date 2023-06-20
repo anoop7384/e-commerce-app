@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/reciept/reciept_page.dart';
+import 'package:eshop/src/screens/reciept/reciept_page.dart';
 
 Align alignCheckoutBtnBottom(BuildContext context,double totalPrice) {
   return Align(

@@ -45,8 +45,8 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyDl7lcJQrifQFr27oZwKGx99Urgrz54nhU',
-    appId: '1:106395754985:web:46a42d7ebc597e097ab47e',
-    messagingSenderId: '106395754985',
+    appId: '1:530643300187:android:4fda4f32942bee6f7ab47e',
+    messagingSenderId: '530643300187',
     projectId: 'e-shop-78ab5',
     authDomain: 'e-shop-78ab5.firebaseapp.com',
     storageBucket: 'e-shop-78ab5.appspot.com',
@@ -55,29 +55,31 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDl7lcJQrifQFr27oZwKGx99Urgrz54nhU',
-    appId: '1:106395754985:android:46a42d7ebc597e097ab47e',
-    messagingSenderId: '106395754985',
+    appId: '1:530643300187:android:4fda4f32942bee6f7ab47e',
+    messagingSenderId: '530643300187',
     projectId: 'e-shop-78ab5',
     storageBucket: 'e-shop-78ab5.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDl7lcJQrifQFr27oZwKGx99Urgrz54nhU',
-    appId: '1:106395754985:ios:46a42d7ebc597e097ab47e',
-    messagingSenderId: '106395754985',
+    appId: '1:530643300187:android:4fda4f32942bee6f7ab47e',
+    messagingSenderId: '530643300187',
     projectId: 'e-shop-78ab5',
     storageBucket: 'e-shop-78ab5.appspot.com',
-    iosClientId: '106395754985-49gshn2jbmcvg5g979rra2oqnqp6h3nt.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutter_shopping_app',
+    iosClientId:
+        '106395754985-49gshn2jbmcvg5g979rra2oqnqp6h3nt.apps.googleusercontent.com',
+    iosBundleId: 'com.example.eshop',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDl7lcJQrifQFr27oZwKGx99Urgrz54nhU',
-    appId: '1:106395754985:ios:46a42d7ebc597e097ab47e',
-    messagingSenderId: '106395754985',
+    appId: '1:530643300187:android:4fda4f32942bee6f7ab47e',
+    messagingSenderId: '530643300187',
     projectId: 'e-shop-78ab5',
     storageBucket: 'e-shop-78ab5.appspot.com',
-    iosClientId: '106395754985-49gshn2jbmcvg5g979rra2oqnqp6h3nt.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutter_shopping_app',
+    iosClientId:
+        '106395754985-49gshn2jbmcvg5g979rra2oqnqp6h3nt.apps.googleusercontent.com',
+    iosBundleId: 'com.example.eshop',
   );
 }

@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/constants.dart';
-import 'package:flutter_shopping_app/src/screens/home/home_screen.dart';
-import 'package:flutter_shopping_app/src/screens/login/components/textfield_decoration.dart';
-import 'package:flutter_shopping_app/src/screens/login/components/widgets.dart';
-import 'package:flutter_shopping_app/src/screens/register/register_screen.dart';
+import 'package:eshop/constants.dart';
+import 'package:eshop/src/screens/home/home_screen.dart';
+import 'package:eshop/src/screens/login/components/textfield_decoration.dart';
+import 'package:eshop/src/screens/login/components/widgets.dart';
+import 'package:eshop/src/screens/register/register_screen.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _LoginBodyState extends State<LoginBody> {
       shrinkWrap: true,
       padding: const EdgeInsets.all(40.0),
       children: [
-        buildHeroThumbnail(profileThumb),
+        buildHeroThumbnail(AssetImage('assets/images/cart.png')),
         SizedBox(height: 20),
         buildTextLoginNow(),
         SizedBox(height: 20),

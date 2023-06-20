@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_shopping_app/database.dart';
+import 'package:eshop/database.dart';
 
 import '../../../constants.dart';
 import '../../components/search_box.dart';
@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var fakeProducts = [];
   var products = [];
-  List categories = [];
+  List categories = ["ALL", "electronics", "jewelery", "men's clothing", "women's clothing"];
   var subscription;
   var selectedIndex = 0;
 
@@ -34,14 +34,14 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         products = items;
       });
-    });
-    getCategories().then((items) async {
-      setState(() {
-        categories = items;
-        categories.insert(0, "ALL");
-      });
       _loadData();
     });
+    // getCategory().then((items) async {
+    //   setState(() {
+    //     categories = items;
+    //   });
+    //   _loadData();
+    // });
 
     super.initState();
   }
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: EdgeInsets.all(8),
         child: fakeProducts.length == 0
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   backgroundColor: Colors.indigo,
                   strokeWidth: 1,

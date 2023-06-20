@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/cart/components/btn_bottom.dart';
+import 'package:eshop/src/screens/cart/components/btn_bottom.dart';
 
 import '../../../../database.dart';
 import '../../../models/cartItems.dart';
@@ -17,13 +17,32 @@ class CartBody extends StatefulWidget {
 
 class _CartBodyState extends State<CartBody> {
   List<CartItem> cartItems = [];
-  double finalPrice=0.0;
+  double finalPrice = 0.0;
 
   @override
   void initState() {
     fetchCartItems();
     getfinalPrice();
     super.initState();
+  }
+
+  void fetchCartItems() async {
+    final user = FirebaseAuth.instance.currentUser;
+    List<CartItem> Items = await getCart(user!.uid.toString());
+    setState(() {
+      cartItems = Items;
+    });
+    getfinalPrice();
+  }
+
+  void getfinalPrice() async {
+    double sum = 0.0;
+    for (var cartItem in cartItems) {
+      sum += (cartItem.price * cartItem.quantity);
+    }
+    setState(() {
+      finalPrice = sum;
+    });
   }
 
   @override
@@ -45,7 +64,7 @@ class _CartBodyState extends State<CartBody> {
                           itemCount: cartItems.length,
                           itemBuilder: (BuildContext ctxt, int index) =>
                               buildBody(ctxt, index))),
-                  buildAlignBtnBottom(context,finalPrice),
+                  buildAlignBtnBottom(context,cartItems, finalPrice),
                 ],
               ),
             ),
@@ -126,24 +145,30 @@ class _CartBodyState extends State<CartBody> {
                   ),
                   SizedBox(width: 10),
                   ElevatedButton(
-                          onPressed: () async {
-                            final user = FirebaseAuth.instance.currentUser;
-                            final cartRef = FirebaseFirestore.instance.collection('users').doc(user!.uid).collection('cart');
-                            try {
-                              await cartRef.doc(cartItems[index].id.toString()).delete();
-                              print('Cart item removed successfully from the database.');
+                    onPressed: () async {
+                      final user = FirebaseAuth.instance.currentUser;
+                      final cartRef = FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(user!.uid)
+                          .collection('cart');
+                      try {
+                        await cartRef
+                            .doc(cartItems[index].id.toString())
+                            .delete();
+                        print(
+                            'Cart item removed successfully from the database.');
 
-                              // Remove the cart item from the cartItems list
-                              setState(() {
-                                cartItems.remove(cartItems[index]);
-                              });
-                              getfinalPrice();
+                        // Remove the cart item from the cartItems list
+                        setState(() {
+                          cartItems.remove(cartItems[index]);
+                        });
+                        getfinalPrice();
 
-                              print('Cart item removed successfully from the list.');
-                            } catch (error) {
-                              print('Failed to remove cart item: $error');
-                            }
-                          },
+                        print('Cart item removed successfully from the list.');
+                      } catch (error) {
+                        print('Failed to remove cart item: $error');
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0),
@@ -158,43 +183,5 @@ class _CartBodyState extends State<CartBody> {
     );
   }
 
-  void fetchCartItems() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final cartRef = FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .collection('cart');
-
-    QuerySnapshot querySnapshot = await cartRef.get();
-    List<CartItem> Items = [];
-
-    querySnapshot.docs.forEach((doc) {
-      CartItem cartItem = CartItem(
-        id: doc['id'],
-        title: doc['title'],
-        description: doc['description'],
-        category: doc['category'],
-        image: doc['image'],
-        quantity: 1,
-        price: doc['price'],
-      );
-
-      Items.add(cartItem);
-    });
-    setState(() {
-      cartItems = Items;
-    });
-    getfinalPrice();
-  }
-
-  void getfinalPrice() async {
-    double sum=0.0;
-    for (var cartItem in cartItems) {
-      sum += (cartItem.price * cartItem.quantity);
-    }
-    setState(() {
-      finalPrice=sum;
-    });
-
-  }
+  
 }

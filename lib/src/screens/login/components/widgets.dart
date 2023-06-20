@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/components/text_widgets.dart';
+import 'package:eshop/src/components/text_widgets.dart';
 
 Hero buildHeroThumbnail(profileThumb) {
   return Hero(
@@ -8,7 +8,7 @@ Hero buildHeroThumbnail(profileThumb) {
     child: Center(
       child: CircleAvatar(
         radius: 60.0,
-        backgroundImage: NetworkImage(profileThumb),
+        backgroundImage: AssetImage('assets/images/cart.png'),
         backgroundColor: Colors.transparent,
       ),
     ),

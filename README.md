@@ -1,18 +1,16 @@
-## flutter_shopping_app
+# eshop
 
-A complete flutter Shopping application project.
+A new Flutter project.
 
-### Getting Started
+## Getting Started
 
 This project is a starting point for a Flutter application.
 
-### Watch:
+A few resources to get you started if this is your first Flutter project:
 
-[![Watch the video](https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg)](https://www.youtube.com/watch?v=LTc2vIA34ds "Everything Is AWESOME")
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-
-
-### A few screenshots:
-
-<img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/login.png?raw=true" width="300" height="650" />   <img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/home.png?raw=true" width="300" height="650" />    <img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/detail.png?raw=true" width="300" height="650" />
-<img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/cart.png?raw=true" width="300" height="650" />    <img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/payment.png?raw=true" width="300" height="650" /> <img src="https://github.com/ishaileshmishra/flutter_shopping_app/blob/main/assets/images/receipt.png?raw=true" width="300" height="650" />
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

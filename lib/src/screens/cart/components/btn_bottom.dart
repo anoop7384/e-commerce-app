@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app/src/screens/payment/payment_screen.dart';
+import 'package:eshop/src/screens/payment/summary/order_summary_screen.dart';
 
-Align buildAlignBtnBottom(BuildContext context,double finalPrice) {
+import '../../../models/cartItems.dart';
+
+Align buildAlignBtnBottom(
+    BuildContext context, List<CartItem> cartItems, double finalPrice) {
   return Align(
     alignment: Alignment.bottomCenter,
     child: Container(
@@ -33,8 +36,11 @@ Align buildAlignBtnBottom(BuildContext context,double finalPrice) {
           Spacer(),
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PaymentGateway(totalPrice: finalPrice)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OrderSummary(
+                            products: cartItems, totalPrice: finalPrice)));
               },
               style: ElevatedButton.styleFrom(
                 shape: new RoundedRectangleBorder(

@@ -1,3 +1,5 @@
+import 'package:eshop/src/screens/profile/profile.dart';
+import 'package:eshop/src/screens/wishlist/wishlist_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,7 @@ AppBar homeActionBar(context) {
             tag: "userThumbnail",
             child: CircleAvatar(
               radius: 20.0,
-              backgroundImage: NetworkImage(profileThumb),
+              backgroundImage: AssetImage('assets/images/cart.png'),
               backgroundColor: Colors.transparent,
             )),
       ),
@@ -31,7 +33,9 @@ AppBar homeActionBar(context) {
           Text(
             'Buy. Think. Grow',
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.indigo),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.indigo),
           ),
           Text(
             'A few clicks is all it takes.',
@@ -63,11 +67,35 @@ AppBar homeActionBar(context) {
             onTap: () {
               Navigator.push(
                 context,
+                MaterialPageRoute(builder: (context) => const WishList()),
+              );
+            },
+            child:
+                Icon(CupertinoIcons.heart, size: 30, color: Colors.deepPurple),
+          )),
+      Padding(
+          padding: EdgeInsets.all(8),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
                 MaterialPageRoute(builder: (context) => ProductCart()),
               );
             },
             child:
                 Icon(CupertinoIcons.cart, size: 30, color: Colors.deepPurple),
+          )),
+      Padding(
+          padding: EdgeInsets.all(8),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profile()),
+              );
+            },
+            child:
+                Icon(CupertinoIcons.person, size: 30, color: Colors.deepPurple),
           )),
       //Icon(CupertinoIcons.search, size: 30, color: Colors.indigoAccent)
     ],
