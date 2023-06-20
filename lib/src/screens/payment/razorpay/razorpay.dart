@@ -1,13 +1,12 @@
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import './api_services.dart';
 
 class RazorPayIntegration {
   final Razorpay _razorpay = Razorpay(); //Instance of razor pay
-  // final razorPayKey = dotenv.get("RAZOR_KEY");
-  // final razorPaySecret = dotenv.get("RAZOR_SECRET");
-  final razorPayKey = "rzp_test_zy1zQv2cIm09LL";
-  final razorPaySecret = "nQAqcOzXYa6PxZqDQAd0p2IH";
+  final razorPayKey = dotenv.get("RAZOR_KEY");
+  final razorPaySecret = dotenv.get("RAZOR_SECRET");
   intiateRazorPay() {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);

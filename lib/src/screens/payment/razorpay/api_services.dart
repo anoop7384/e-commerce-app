@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
-  // final razorPayKey = dotenv.get("RAZOR_KEY");
-  // final razorPaySecret = dotenv.get("RAZOR_SECRET");
-  final razorPayKey = "rzp_test_zy1zQv2cIm09LL";
-  final razorPaySecret = "nQAqcOzXYa6PxZqDQAd0p2IH";
+  final razorPayKey = dotenv.get("RAZOR_KEY");
+  final razorPaySecret = dotenv.get("RAZOR_SECRET");
+
 
   razorPayApi(num amount, String recieptId) async {
     var auth =
