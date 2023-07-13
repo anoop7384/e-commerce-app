@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
         child: fakeProducts.length == 0
             ? const Center(
                 child: CircularProgressIndicator(
-                  backgroundColor: Colors.indigo,
+                  backgroundColor: Colors.blue,
                   strokeWidth: 1,
                 ),
               )

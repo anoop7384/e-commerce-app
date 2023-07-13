@@ -8,6 +8,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:eshop/src/models/cartItems.dart';
+import 'package:eshop/src/models/orders.dart';
 import 'package:eshop/src/models/products.dart';
 import 'package:eshop/src/models/userProfile.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -74,12 +75,12 @@ Future<List<Product>> getDbProducts() async {
 
   List<Product> products = [];
 
-  querySnapshot.docs.forEach((doc) {
+  for (var doc in querySnapshot.docs) {
     if (doc.exists) {
       Product product = Product.fromJson(doc.data() as Map<String, dynamic>);
       products.add(product);
     }
-  });
+  }
 
   return products;
 }
@@ -91,12 +92,12 @@ Future<List<String>> getCategory() async {
 
   List<String> products = [];
 
-  querySnapshot.docs.forEach((doc) {
+  for (var doc in querySnapshot.docs) {
     if (doc.exists) {
       var cat = doc.data() as Map<String, dynamic>;
       products.add(cat['category'].toString());
     }
-  });
+  }
 
   print(products);
 
@@ -127,7 +128,7 @@ Future<List<CartItem>> getCart(String userId) async {
   QuerySnapshot querySnapshot = await cartRef.get();
   List<CartItem> Items = [];
 
-  querySnapshot.docs.forEach((doc) {
+  for (var doc in querySnapshot.docs) {
     CartItem cartItem = CartItem(
       id: doc['id'],
       title: doc['title'],
@@ -139,9 +140,24 @@ Future<List<CartItem>> getCart(String userId) async {
     );
 
     Items.add(cartItem);
-  });
+  }
 
   return Items;
+}
+
+Future<void> removeFromCart(String userId, String productId) async {
+  try {
+    final cartRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cart');
+
+    await cartRef.doc(productId).delete();
+
+    print('Product removed from cart successfully!');
+  } catch (error) {
+    print('Failed to remove product from cart: $error');
+  }
 }
 
 
@@ -185,7 +201,7 @@ Future<List<Product>> getWishList(String userId) async {
   QuerySnapshot querySnapshot = await cartRef.get();
   List<Product> Items = [];
 
-  querySnapshot.docs.forEach((doc) {
+  for (var doc in querySnapshot.docs) {
     Product cartItem = Product(
       id: doc['id'],
       title: doc['title'],
@@ -196,7 +212,7 @@ Future<List<Product>> getWishList(String userId) async {
     );
 
     Items.add(cartItem);
-  });
+  }
 
   return Items;
 }
@@ -215,4 +231,34 @@ Future<bool> isProductInWishList(String userId, String productId) async {
     print('Error checking product in wishlist: $error');
     return false;
   }
+}
+
+
+Future<void> addOrdersToDB(String userId, List<PlacedOrder> orders) async {
+  final CollectionReference ordersCollection =
+      FirebaseFirestore.instance.collection('users/$userId/orders');
+
+  for (var order in orders) {
+    await ordersCollection.add(order.toJson());
+  }
+  print('Orders placed successfully successfully!');
+  
+}
+
+
+Future<List<PlacedOrder>> fetchOrdersFromDB(String userId) async {
+  final CollectionReference ordersCollection =
+      FirebaseFirestore.instance.collection('users/$userId/orders');
+
+  QuerySnapshot querySnapshot =
+      await ordersCollection.orderBy('orderDate', descending: true).get();
+
+  List<PlacedOrder> orders = [];
+
+  for (var doc in querySnapshot.docs) {
+    PlacedOrder order = PlacedOrder.fromJson(doc.data() as Map<String, dynamic>);
+    orders.add(order);
+  }
+
+  return orders;
 }

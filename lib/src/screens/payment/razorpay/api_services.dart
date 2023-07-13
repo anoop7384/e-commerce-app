@@ -5,8 +5,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
-  final razorPayKey = dotenv.get("RAZOR_KEY");
-  final razorPaySecret = dotenv.get("RAZOR_SECRET");
+  // final razorPayKey = dotenv.get("RAZOR_KEY");
+  // final razorPaySecret = dotenv.get("RAZOR_SECRET");
+  final razorPayKey ='rzp_test_bKjyw6oAGXB3yD';
+  final razorPaySecret = 'D69Sv9XJIfFNBPW3fejvvOU7';
 
 
   razorPayApi(num amount, String recieptId) async {

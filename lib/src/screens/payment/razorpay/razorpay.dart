@@ -5,8 +5,11 @@ import './api_services.dart';
 
 class RazorPayIntegration {
   final Razorpay _razorpay = Razorpay(); //Instance of razor pay
-  final razorPayKey = dotenv.get("RAZOR_KEY");
-  final razorPaySecret = dotenv.get("RAZOR_SECRET");
+  // final razorPayKey = dotenv.get("RAZOR_KEY");
+  // final razorPaySecret = dotenv.get("RAZOR_SECRET");
+  final razorPayKey = 'rzp_test_bKjyw6oAGXB3yD';
+  final razorPaySecret = 'D69Sv9XJIfFNBPW3fejvvOU7';
+
   intiateRazorPay() {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);

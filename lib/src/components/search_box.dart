@@ -13,8 +13,8 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8),
-      padding: EdgeInsets.symmetric(
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 4,
       ),
@@ -25,35 +25,36 @@ class SearchBox extends StatelessWidget {
       child: TextField(
         textCapitalization: TextCapitalization.words,
         onChanged: onChanged,
-        style: TextStyle(color: Colors.deepPurple),
-        cursorColor: Colors.deepPurple,
-        decoration: InputDecoration(
+        style: const TextStyle(color: Colors.blue),
+        cursorColor: Colors.blue,
+        decoration: const InputDecoration(
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             hintText: 'Search',
-            hintStyle: TextStyle(color: Colors.deepPurple),
+            hintStyle: TextStyle(color: Colors.blue),
             prefixIcon: Icon(
               CupertinoIcons.search,
-              color: Colors.deepPurple,
+              color: Colors.blue,
             ),
-            suffixIcon: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CameraApp()),
-                );
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Center(
-                  child: Icon(
-                    CupertinoIcons.camera,
-                    color: Colors.deepPurple,
-                    size: 35,
-                  ),
-                ),
-              ),
-            )),
+            // suffixIcon: InkWell(
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => CameraApp()),
+            //     );
+            //   },
+            //   child: CircleAvatar(
+            //     backgroundColor: Colors.white,
+            //     child: Center(
+            //       child: Icon(
+            //         CupertinoIcons.camera,
+            //         color: Colors.blue,
+            //         size: 35,
+            //       ),
+            //     ),
+            //   ),
+            // )
+            ),
       ),
     );
   }

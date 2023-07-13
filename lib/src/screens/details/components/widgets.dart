@@ -21,9 +21,9 @@ Row thumbnailImages(product) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       clipImageRect(product.image),
-      SizedBox(width: 10),
+      const SizedBox(width: 10),
       clipImageRect(product.image),
-      SizedBox(width: 10),
+      const SizedBox(width: 10),
       clipImageRect(product.image),
     ],
   );
@@ -34,18 +34,18 @@ Row buildThumbnailRow(product) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       clipImageRect(product.image),
-      SizedBox(width: 10),
+      const SizedBox(width: 10),
       clipImageRect(product.image),
-      SizedBox(width: 10),
+      const SizedBox(width: 10),
       clipImageRect(product.image),
-      Spacer(),
+      const Spacer(),
       rowRating()
     ],
   );
 }
 
 Row rowRating() {
-  return Row(
+  return const Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
@@ -60,48 +60,53 @@ Row rowRating() {
   );
 }
 
-Row buildRowBtnPrice(context, Product product) {
-  return Row(
+Column buildRowBtnPrice(context, Product product) {
+  return Column(
     children: [
       Text(
         '\$ ${product.price}',
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30,color: Colors.white),
       ),
-      Spacer(),
-      ElevatedButton(
-          onPressed: () async {
-            await addToCart(
-                FirebaseAuth.instance.currentUser!.uid.toString(), product);
-          },
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-          ),
-          child: Text('ADD TO CART', style: TextStyle(fontSize: 20))),
-      ElevatedButton(
-          onPressed: () {
-            CartItem toCart = CartItem(
-              id: product.id,
-              title: product.title,
-              description: product.description,
-              category: product.category,
-              image: product.image,
-              quantity: 1,
-              price: product.price,
-            );
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => OrderSummary(
-                        products: [toCart], totalPrice: product.price)));
-          },
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-          ),
-          child: Text('BUY NOW', style: TextStyle(fontSize: 20))),
+      const SizedBox(height: 20,),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+              onPressed: () async {
+                await addToCart(
+                    FirebaseAuth.instance.currentUser!.uid.toString(), product);
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
+              child: const Text('ADD TO CART', style: TextStyle(fontSize: 20))),
+          ElevatedButton(
+              onPressed: () {
+                CartItem toCart = CartItem(
+                  id: product.id,
+                  title: product.title,
+                  description: product.description,
+                  category: product.category,
+                  image: product.image,
+                  quantity: 1,
+                  price: product.price,
+                );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OrderSummary(
+                            products: [toCart], totalPrice: product.price)));
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+              ),
+              child: const Text('BUY NOW', style: TextStyle(fontSize: 20))),
+        ],
+      ),
     ],
   );
 }
@@ -115,17 +120,17 @@ CircleAvatar buildCircleColorAvatar(Color color) {
 
 BoxDecoration boxDecoration() {
   return BoxDecoration(
-    color: Colors.grey.shade200,
+    color: Colors.blueGrey,
     border: Border.all(
       color: Colors.grey.shade300,
     ),
-    borderRadius: BorderRadius.only(
+    borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(30), topRight: Radius.circular(30)),
   );
 }
 
 ClipRRect clipImageRect(image) {
   return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
       child: Image.network(image, height: 50, width: 50));
 }

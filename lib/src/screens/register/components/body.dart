@@ -34,85 +34,94 @@ class _RegisterBodyState extends State<RegisterBody> {
       shrinkWrap: true,
       padding: const EdgeInsets.all(40.0),
       children: [
-        buildHeroThumbnail(AssetImage('assets/images/cart.png')),
-        SizedBox(height: 20),
+        buildHeroThumbnail(const AssetImage('assets/images/icon.png')),
+        const SizedBox(height: 20),
         buildTextRegisterNow(),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         buildRowCreateNew(),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         // emailField,
         TextField(
           controller: fullnameController,
           onChanged: (value) => fullname = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
-          cursorColor: Colors.deepPurple,
+          style: const TextStyle(color: Colors.blue),
+          cursorColor: Colors.blue,
           keyboardType: TextInputType.emailAddress,
           decoration: fieldDecoration(
-            Icon(CupertinoIcons.mail_solid),
+            const Icon(CupertinoIcons.person),
             'Full Name',
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextField(
           controller: emailController,
           onChanged: (value) => email = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
-          cursorColor: Colors.deepPurple,
+          style: const TextStyle(color: Colors.blue),
+          cursorColor: Colors.blue,
           keyboardType: TextInputType.emailAddress,
           decoration: fieldDecoration(
-            Icon(CupertinoIcons.mail_solid),
+            const Icon(CupertinoIcons.mail_solid),
             'Email',
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextField(
           controller: phonenumberController,
           onChanged: (value) => phonenumber = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
-          cursorColor: Colors.deepPurple,
+          style: const TextStyle(color: Colors.blue),
+          cursorColor: Colors.blue,
           keyboardType: TextInputType.emailAddress,
           decoration: fieldDecoration(
-            Icon(CupertinoIcons.mail_solid),
+            const Icon(CupertinoIcons.phone),
             'Phone Number',
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         // passwordField
         TextField(
           controller: passwordController,
           onChanged: (value) => password = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
+          style: const TextStyle(color: Colors.blue),
           autofocus: false,
           obscureText: true,
           keyboardType: TextInputType.visiblePassword,
-          cursorColor: Colors.deepPurple,
+          cursorColor: Colors.blue,
           decoration:
-              fieldDecoration(Icon(CupertinoIcons.lock_fill), 'Password'),
+              fieldDecoration(const Icon(CupertinoIcons.lock_fill), 'Password'),
         ),
-        SizedBox(height: 40),
+        const SizedBox(height: 40),
         // buildRowForgotPassword()
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Don't have an account? ",
+            const Text("Already have an account ",
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.normal,
                 )),
-            Text(
-              'Register.',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                TextButton(
+                  onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                )
+              },
+                child: const Text(
+                'Sign In.',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
+            )
+            
           ],
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         // buildRegisterButton()
         ElevatedButton(
             onPressed: () async {
@@ -155,9 +164,9 @@ class _RegisterBodyState extends State<RegisterBody> {
               ),
             ),
             child: Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 width: double.infinity,
-                child: Center(
+                child: const Center(
                     child: Text("Register",
                         style: TextStyle(
                           fontSize: 16,

@@ -1,4 +1,6 @@
 import 'package:eshop/src/models/cartItems.dart';
+import 'package:eshop/src/screens/cart/components/btn_bottom.dart';
+import 'package:eshop/src/screens/reciept/reciept_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,16 +31,16 @@ class _OrderSummaryState extends State<OrderSummary> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Summary'),
+        title: const Text('Order Summary'),
       ),
       body: Column(
         children: [
-          // Add your other checkout content here
+          const SizedBox(height: 16),
           const Text(
             'Order Summary',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ListView.builder(
             shrinkWrap: true,
             itemCount: widget.products.length,
@@ -47,65 +49,100 @@ class _OrderSummaryState extends State<OrderSummary> {
               return ListTile(
                 leading: Image.network(product.image!),
                 title: Text(product.title!),
-                subtitle: Text('Quantity: ${product.quantity}  Total Price: ${product.price*product.quantity}'),
+                subtitle: Text(
+                    'Quantity: ${product.quantity}  Total Price: \$ ${product.price * product.quantity}'),
               );
             },
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             'Final Price: \$${widget.totalPrice}',
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
-          SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {
-              _integration.openSession(amount: widget.totalPrice);
-              // Add your payment logic here
-            },
-            child: Text('Proceed to Payment'),
-          ),
+          const SizedBox(height: 360),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: buildAlignBtnBottom2(
+                context, widget.products, widget.totalPrice),
+          )
+
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // _integration.openSession(amount: widget.totalPrice);
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             Builder(builder: (innerContext) => ReceiptPage()),
+          //       ),
+          //     );
+          //     // Add your payment logic here
+          //   },
+          //   child: Text('Proceed to Payment'),
+          // ),
         ],
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   List<PayCard> paymentOptions = getPaymentOptions();
 
-  //   return Scaffold(
-  //     backgroundColor: Colors.white,
-  //     appBar: buildCheckoutAppBar(context,widget.totalPrice),
-  //     body: Container(
-  //       padding: EdgeInsets.only(top: 0, left: 10, right: 10),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           Expanded(
-  //               child: ListView.builder(
-  //                   itemCount: paymentOptions.length,
-  //                   itemBuilder: (BuildContext context, int index) {
-  //                     return Padding(
-  //                       padding: EdgeInsets.all(8.0),
-  //                       child: ExpansionTile(
-  //                         title: Text(
-  //                           paymentOptions[index].title!,
-  //                           style: TextStyle(
-  //                               fontSize: 16, fontWeight: FontWeight.bold),
-  //                         ),
-  //                         children: [
-  //                           buildPaymentList(paymentOptions, index),
-  //                           buildPaymentList(paymentOptions, 3),
-  //                           buildPaymentList(paymentOptions, 2),
-  //                         ],
-  //                       ),
-
-  //                       //buildPaymentList(paymentOptions, index)
-  //                     );
-  //                   })),
-  //           alignCheckoutBtnBottom(context,widget.totalPrice)
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  Align buildAlignBtnBottom2(
+      BuildContext context, List<CartItem> cartItems, double finalPrice) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: 80,
+        color: Colors.white,
+        child: Row(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Total',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '\$ $finalPrice',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                )
+              ],
+            ),
+            const Spacer(),
+            ElevatedButton(
+                onPressed: () {
+                  _integration.openSession(amount: widget.totalPrice);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => Builder(
+                  //         builder: (innerContext) => ReceiptPage(
+                  //             totalPrice: widget.totalPrice,
+                  //             products: widget.products)),
+                  //   ),
+                  // );
+                  // Add your payment logic here
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0),
+                  ),
+                ),
+                child: const Text('Proceed to payment',
+                    style: TextStyle(fontSize: 20)))
+          ],
+        ),
+      ),
+    );
+  }
 }

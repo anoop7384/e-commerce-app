@@ -5,13 +5,8 @@ import 'package:eshop/src/components/text_widgets.dart';
 Hero buildHeroThumbnail(profileThumb) {
   return Hero(
     tag: "userThumbnail",
-    child: Center(
-      child: CircleAvatar(
-        radius: 60.0,
-        backgroundImage: profileThumb,
-        backgroundColor: Colors.transparent,
-      ),
-    ),
+    child:Image.asset('assets/images/icon.png')
+    
   );
 }
 
@@ -79,9 +74,9 @@ SizedBox buildTextRegisterNow() {
     child: AnimatedTextKit(
       repeatForever: true,
       animatedTexts: [
-        TypewriterAnimatedText("Let's sign you in",
+        TypewriterAnimatedText("Let's sign up",
             textStyle: TextStyle(
-                color: Colors.indigo,
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
                 fontSize: 35)),
       ],

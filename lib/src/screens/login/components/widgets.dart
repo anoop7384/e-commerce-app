@@ -6,11 +6,12 @@ Hero buildHeroThumbnail(profileThumb) {
   return Hero(
     tag: "userThumbnail",
     child: Center(
-      child: CircleAvatar(
-        radius: 60.0,
-        backgroundImage: AssetImage('assets/images/cart.png'),
-        backgroundColor: Colors.transparent,
-      ),
+      child: Image.asset('assets/images/icon.png')
+      // CircleAvatar(
+      //   radius: 0.0,
+      //   backgroundImage: AssetImage('assets/images/icon.png'),
+      //   backgroundColor: Colors.transparent,
+      // ),
     ),
   );
 }
@@ -81,7 +82,7 @@ SizedBox buildTextLoginNow() {
       animatedTexts: [
         TypewriterAnimatedText("Let's sign you in",
             textStyle: TextStyle(
-                color: Colors.indigo,
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
                 fontSize: 35)),
       ],

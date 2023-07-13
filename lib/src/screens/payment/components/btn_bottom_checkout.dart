@@ -33,8 +33,8 @@ Align alignCheckoutBtnBottom(BuildContext context,double totalPrice) {
           Spacer(),
           ElevatedButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ReceiptPage()));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => ReceiptPage(totalPrice: totalPrice,products: ,)));
               },
               style: ElevatedButton.styleFrom(
                 shape: new RoundedRectangleBorder(

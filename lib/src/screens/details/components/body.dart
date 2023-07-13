@@ -22,7 +22,7 @@ class _DetailBodyState extends State<DetailBody> {
 
   @override
   Widget build(BuildContext context) {
-    var imageHeight = (MediaQuery.of(context).size.height) / 2;
+    var imageHeight = (MediaQuery.of(context).size.height) / 3;
     Product product = widget.product!;
 
     return Padding(
@@ -34,21 +34,22 @@ class _DetailBodyState extends State<DetailBody> {
               tag: widget.product!.id!,
               child: Image.network(widget.product!.image!)),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: boxDecoration(),
+          height: 2*imageHeight,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildTitleText(product),
-              SizedBox(height: 10),
-              Text(product!.description!),
-              SizedBox(height: 20),
+              const SizedBox(height: 10),
+              Text(product.description!),
+              const SizedBox(height: 20),
               buildThumbnailRow(widget.product),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               buildRowColors(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               buildRowBtnPrice(context, product)
             ],
           ),
@@ -60,7 +61,7 @@ class _DetailBodyState extends State<DetailBody> {
   Text buildTitleText(Product product) {
     return Text(
       product.title!,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
     );
@@ -70,14 +71,14 @@ class _DetailBodyState extends State<DetailBody> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Color'),
-        SizedBox(width: 10),
+        const Text('Color'),
+        const SizedBox(width: 10),
         buildCircleColorAvatar(Colors.greenAccent[400]!),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         buildCircleColorAvatar(Colors.red.shade300),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         buildCircleColorAvatar(Colors.indigo.shade300),
-        Spacer(),
+        const Spacer(),
       ],
     );
   }

@@ -27,7 +27,7 @@ class _LoginBodyState extends State<LoginBody> {
       shrinkWrap: true,
       padding: const EdgeInsets.all(40.0),
       children: [
-        buildHeroThumbnail(AssetImage('assets/images/cart.png')),
+        buildHeroThumbnail(AssetImage('assets/images/icon.png')),
         SizedBox(height: 20),
         buildTextLoginNow(),
         SizedBox(height: 20),
@@ -38,8 +38,8 @@ class _LoginBodyState extends State<LoginBody> {
           controller: emailController,
           onChanged: (value) => email = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
-          cursorColor: Colors.deepPurple,
+          style: TextStyle(color: Colors.blue),
+          cursorColor: Colors.blue,
           keyboardType: TextInputType.emailAddress,
           decoration: fieldDecoration(
             Icon(CupertinoIcons.mail_solid),
@@ -52,11 +52,11 @@ class _LoginBodyState extends State<LoginBody> {
           controller: passwordController,
           onChanged: (value) => password = value,
           textCapitalization: TextCapitalization.words,
-          style: TextStyle(color: Colors.deepPurple),
+          style: TextStyle(color: Colors.blue),
           autofocus: false,
           obscureText: true,
           keyboardType: TextInputType.visiblePassword,
-          cursorColor: Colors.deepPurple,
+          cursorColor: Colors.blue,
           decoration:
           fieldDecoration(Icon(CupertinoIcons.lock_fill), 'Password'),
         ),

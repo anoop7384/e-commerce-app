@@ -5,6 +5,7 @@ import 'package:eshop/src/screens/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../../database.dart';
 import '../../models/userProfile.dart';
@@ -25,11 +26,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
   UserProfile? userProfile;
   File? imageFile;
   bool waiting = false;
+  DateTime? selectedDate;
 
   @override
   void initState() {
     picture = widget.downloadURL;
     userProfile = widget.profile;
+    selectedDate = widget.profile.dateOfBirth;
     super.initState();
   }
 
@@ -43,6 +46,23 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
       setState(() {
         picture = imageFile!.path;
+      });
+    }
+  }
+
+  Future<void> selectDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null && pickedDate != selectedDate) {
+      setState(() {
+        selectedDate = pickedDate;
+        print(selectedDate);
+        userProfile = userProfile!.copyWith(dateOfBirth: selectedDate);
       });
     }
   }
@@ -73,20 +93,21 @@ class _UpdateProfileState extends State<UpdateProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Profile'),
+        title: const Text('Update Profile'),
       ),
       body: waiting
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                   strokeWidth: 2, backgroundColor: Colors.indigoAccent),
             )
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Profile Picture'),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 20.0),
+                  const Text('Profile Picture'),
+                  const SizedBox(height: 8.0),
                   imageFile == null
                       ? CircleAvatar(
                           radius: 50.0,
@@ -101,14 +122,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             ),
                           ),
                         ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   ElevatedButton(
                     onPressed: () async {
                       await selectProfilePicture();
                     },
-                    child: Text('Select Profile Picture'),
+                    child: const Text('Select Profile Picture'),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                     initialValue: widget.profile.username,
                     onChanged: (value) {
@@ -116,9 +137,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         userProfile = userProfile!.copyWith(username: value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Username'),
+                    decoration: const InputDecoration(labelText: 'Username'),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                     initialValue: widget.profile.address,
                     onChanged: (value) {
@@ -126,9 +147,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         userProfile = userProfile!.copyWith(address: value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Address'),
+                    decoration: const InputDecoration(labelText: 'Address'),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                     initialValue: widget.profile.phoneNumber,
                     onChanged: (value) {
@@ -136,9 +157,33 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         userProfile = userProfile!.copyWith(phoneNumber: value);
                       });
                     },
-                    decoration: InputDecoration(labelText: 'Phone Number'),
+                    decoration:
+                        const InputDecoration(labelText: 'Phone Number'),
                   ),
-                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            'Date of Birth',
+                          ),
+                          Text(
+                                DateFormat('dd/MM/yyyy').format(selectedDate!),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      ElevatedButton(
+                        onPressed: selectDate,
+                        child: Text('Select Date'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30.0),
+                  
                   ElevatedButton(
                     onPressed: () async {
                       updateProfile();
@@ -151,7 +196,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           ));
                       // Navigator.pop(context);
                     },
-                    child: Text('Update Profile'),
+                    child: const Text('Update Profile'),
                   ),
                 ],
               ),

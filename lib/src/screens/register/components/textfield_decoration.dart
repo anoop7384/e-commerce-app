@@ -15,15 +15,15 @@ InputDecoration fieldDecoration(Icon icon, String fieldText) {
     fillColor: Colors.grey.shade100,
     filled: true,
     hintText: fieldText,
-    hintStyle: TextStyle(color: Colors.deepPurple),
+    hintStyle: TextStyle(color: Colors.blue),
     prefixIcon: icon,
   );
 }
 
 final emailField = TextField(
   textCapitalization: TextCapitalization.words,
-  style: TextStyle(color: Colors.deepPurple),
-  cursorColor: Colors.deepPurple,
+  style: TextStyle(color: Colors.blue),
+  cursorColor: Colors.blue,
   keyboardType: TextInputType.emailAddress,
   decoration: fieldDecoration(
     Icon(CupertinoIcons.mail_solid),
@@ -33,10 +33,10 @@ final emailField = TextField(
 
 final passwordField = TextField(
   textCapitalization: TextCapitalization.words,
-  style: TextStyle(color: Colors.deepPurple),
+  style: TextStyle(color: Colors.blue),
   autofocus: false,
   obscureText: true,
   keyboardType: TextInputType.visiblePassword,
-  cursorColor: Colors.deepPurple,
+  cursorColor: Colors.blue,
   decoration: fieldDecoration(Icon(CupertinoIcons.lock_fill), 'Password'),
 );

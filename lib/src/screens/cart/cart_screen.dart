@@ -18,9 +18,6 @@ class _ProductCartState extends State<ProductCart> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildCartAppBar(context),
-      body: CartBody(),
-    );
+    return CartBody();
   }
 }
