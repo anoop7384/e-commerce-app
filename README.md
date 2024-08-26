@@ -24,7 +24,7 @@ https://youtu.be/6wqqMTScIwc
 
 ## Screenshots
 
-Here are some screenshots of the Social Networking Website to give you a glimpse of its various pages and features.
+Here are some screenshots of the app to give you a glimpse of its various pages and features.
 
 ## Login Page
 <img src="screenshots/login_page.jpg" width="300" alt="Image">
