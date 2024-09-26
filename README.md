@@ -19,6 +19,9 @@ This is an e-commerce app built using Flutter and Firebase Cloud Firestore. It p
 
 You can download the latest version of the app by clicking [here](build\app\outputs\flutter-apk\app-release.apk).
 
+https://github.com/user-attachments/assets/50b9f23c-98fe-4da8-8dbb-3421975ec6d0
+
+
 A link to a video demo of the app.
 https://youtu.be/6wqqMTScIwc
 
